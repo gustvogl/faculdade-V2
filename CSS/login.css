@@ -1,0 +1,374 @@
+:root {
+    /* Paleta Playtime Cores Vibrantes */
+    --vermelho-principal: #f33a2f; /* Poppy Red */
+    --azul-principal: #00bef0;     /* Huggy Blue */
+    --amarelo-principal: #f4d01c;  /* Grabpack Yellow */
+    --branco: #ffffff;
+    --cinza-claro: #f4f7f9;
+    --texto-principal: #111111;
+    --texto-secundario: #666666;
+    --borda-bloco: #e0e0e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* --- Novo Fundo: Planta Baixa da Fábrica (Blueprint) --- */
+body {
+    /* Cor de fundo base (um azul acinzentado escuro, estilo papel carbono/blueprint) */
+    background-color: #1a2634;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    
+    /* A Mágica do Grid de Engenharia usando Gradientes */
+    background-image: 
+        /* Linhas grossas do grid (Azul Playtime com transparência) */
+        linear-gradient(rgba(0, 190, 240, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 190, 240, 0.3) 1px, transparent 1px),
+        /* Linhas finas do grid (para dar o detalhe de papel milimetrado) */
+        linear-gradient(rgba(0, 190, 240, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 190, 240, 0.1) 1px, transparent 1px);
+        
+    /* Tamanho dos quadrados da grade */
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
+}
+@keyframes moverAzulejos {
+    0% { background-position: 0 0, 40px 40px; }
+    100% { background-position: 160px 160px, 200px 200px; }
+}
+
+/* --- NOVIDADE: Animação de Entrada do Cartão --- */
+@keyframes entradaDoBloco {
+    0% {
+        transform: translateY(-80px) scale(0.85);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.animation-entry {
+    animation: entradaDoBloco 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* O Cartão de Login (Agora com efeito de Luz - Glow) */
+.login-card {
+    background-color: var(--branco);
+    width: 100%;
+    max-width: 440px;
+    padding: 40px 30px;
+    border-radius: 20px;
+    
+    /* Efeito de luz neon saindo de trás do cartão para destacá-lo no fundo escuro */
+    box-shadow: 
+        0 0 40px rgba(0, 190, 240, 0.4),   /* Brilho Azul */
+        0 0 80px rgba(243, 58, 47, 0.2);   /* Brilho Vermelho espalhado */
+        
+    text-align: center;
+    border-bottom: 8px solid var(--azul-principal);
+    position: relative; /* Necessário para a luz se comportar bem */
+    z-index: 10;
+}
+
+/* --- NOVIDADE: Animação da Logo (Balanço de Brinquedo) --- */
+@keyframes balancoBrinquedo {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-3deg); }
+    75% { transform: rotate(3deg); }
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: var(--azul-principal);
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.logo i {
+    color: var(--vermelho-principal);
+    font-size: 30px;
+    filter: drop-shadow(0 4px 0 rgba(243, 58, 47, 0.2));
+    animation: balancoBrinquedo 3s ease-in-out infinite; /* Balanço contínuo */
+}
+
+.logo .highlight {
+    color: var(--amarelo-principal);
+    font-weight: 800;
+}
+
+/* Textos do Cabeçalho */
+.login-card h2 {
+    color: var(--texto-principal);
+    font-size: 1.8rem;
+    margin-bottom: 5px;
+}
+
+.login-card p {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+    margin-bottom: 30px;
+}
+
+/* --- NOVIDADE: Botões de Login Social --- */
+.social-login {
+    display: flex;
+    flex-direction: column; /* Um abaixo do outro em telas menores */
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+/* Suporte para celular: Em telas maiores, ficam um ao lado do outro */
+@media (min-width: 480px) {
+    .social-login {
+        flex-direction: row;
+    }
+}
+
+.btn-social {
+    flex: 1; /* Divide o espaço igualmente */
+    background: var(--branco);
+    border: 2px solid var(--borda-bloco);
+    border-radius: 12px;
+    padding: 12px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+    /* Efeito de Bloco na base */
+    box-shadow: 0 4px 0 var(--borda-bloco); 
+    color: var(--texto-principal);
+}
+
+.btn-social i {
+    font-size: 1.2rem;
+}
+
+/* Estilo Específico do Google (Ícone Colorido, Borda Azul) */
+.btn-google {
+    border-color: var(--azul-principal);
+    box-shadow: 0 4px 0 #0096bd;
+}
+
+.btn-google i {
+    color: #4285F4; /* Azul Oficial do Google */
+}
+
+.btn-google:hover {
+    background-color: rgba(0, 190, 240, 0.05);
+}
+
+/* Estilo Específico da Apple (Branco/Preto Industrial) */
+.btn-apple {
+    border-color: #000000;
+    box-shadow: 0 4px 0 #333333;
+    background: #1a1a1a;
+    color: white;
+}
+
+.btn-apple i {
+    color: white;
+}
+
+.btn-apple:hover {
+    background-color: #000000;
+}
+
+/* Efeito de Clicar nos Botões Sociais */
+.btn-social:hover { transform: translateY(-2px); box-shadow: 0 6px 0 var(--borda-bloco); }
+.btn-google:hover { box-shadow: 0 6px 0 #0096bd; }
+.btn-apple:hover { box-shadow: 0 6px 0 #333333; }
+
+.btn-social:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--borda-bloco); }
+.btn-google:active { box-shadow: 0 2px 0 #0096bd; }
+.btn-apple:active { box-shadow: 0 2px 0 #333333; }
+
+/* Separador com Linha Pontilhada */
+.separador {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--texto-secundario);
+    margin-bottom: 25px;
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+
+.separador::before,
+.separador::after {
+    content: '';
+    flex: 1;
+    border-bottom: 2px dashed var(--borda-bloco); /* Linha pontilhada estilo creche */
+}
+
+.separador span {
+    padding: 0 15px;
+}
+
+/* --- ESTILOS ANTERIORES (MANTER) --- */
+/* Campos de Input */
+.input-container { position: relative; margin-bottom: 20px; }
+.input-container i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--azul-principal); font-size: 1.2rem; }
+.input-container input { width: 100%; padding: 15px 15px 15px 45px; border: 2px solid var(--borda-bloco); border-radius: 12px; font-size: 1rem; outline: none; transition: all 0.3s; background: #fcfcfc; color: var(--texto-principal); }
+.input-container input:focus { border-color: var(--azul-principal); box-shadow: 0 0 0 4px rgba(0, 190, 240, 0.1); background: var(--branco); }
+
+/* Opções (Lembrar senha / Esqueceu) */
+.opcoes-login { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; margin-bottom: 25px; }
+.lembrar { color: var(--texto-secundario); display: flex; align-items: center; gap: 5px; cursor: pointer; }
+.esqueci-senha { color: var(--vermelho-principal); text-decoration: none; font-weight: 700; }
+.esqueci-senha:hover { text-decoration: underline; }
+
+/* Botão de Entrar Traditional (Amarelo 3D) */
+.btn-entrar { width: 100%; background-color: var(--amarelo-principal); color: #111; border: none; padding: 15px; border-radius: 12px; font-size: 1.1rem; font-weight: 800; cursor: pointer; display: flex; justify-content: center; align-items: center; gap: 10px; transition: all 0.2s; box-shadow: 0 5px 0 #d4b517; }
+.btn-entrar:hover { transform: translateY(-2px); box-shadow: 0 7px 0 #d4b517; }
+.btn-entrar:active { transform: translateY(3px); box-shadow: 0 2px 0 #d4b517; }
+
+/* Rodapé do Login */
+.login-footer { margin-top: 25px; font-size: 0.9rem; color: var(--texto-secundario); border-top: 1px solid #eee; padding-top: 20px; }
+.login-footer a { color: var(--azul-principal); text-decoration: none; font-weight: 700; }
+.login-footer a:hover { text-decoration: underline; }
+.btn-voltar {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: var(--branco); /* Texto branco para destacar no fundo escuro */
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 190, 240, 0.1); /* Fundo azul bem transparente */
+    border: 2px solid var(--azul-principal); /* Borda Azul Playtime */
+    padding: 10px 20px;
+    border-radius: 50px; /* Formato de pílula */
+    transition: all 0.3s ease;
+    z-index: 100; /* Garante que fique acima do fundo */
+    backdrop-filter: blur(5px); /* Efeito de vidro embaçado (opcional, fica bem moderno) */
+}
+
+/* Animação ao passar o mouse */
+.btn-voltar:hover {
+    background: var(--azul-principal);
+    color: var(--branco);
+    transform: translateX(-5px); /* O botão dá um "passinho" para a esquerda */
+    box-shadow: 0 5px 15px rgba(0, 190, 240, 0.4); /* Brilho neon */
+}
+
+/* Ajuste para Celulares (não ocupar muito espaço) */
+@media (max-width: 768px) {
+    .btn-voltar {
+        top: 15px;
+        left: 15px;
+        padding: 8px 15px;
+        font-size: 0.85rem;
+    }
+}
+
+/* --- Tela de Carregamento (Loader) --- */
+.page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--cinza-claro); /* Usa a cor de fundo padrão */
+    z-index: 99999; /* Fica acima de TUDO no site */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Classe que o JavaScript vai usar para esconder a tela */
+.page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Ícone girando em 3D */
+.loader-icon {
+    font-size: 50px;
+    color: var(--vermelho-principal);
+    animation: giroBrinquedo 2s infinite ease-in-out;
+}
+
+@keyframes giroBrinquedo {
+    0% { transform: rotateY(0deg) scale(1); }
+    50% { transform: rotateY(180deg) scale(1.2); color: var(--azul-principal); }
+    100% { transform: rotateY(360deg) scale(1); color: var(--amarelo-principal); }
+}
+
+.loader-content h2 {
+    color: var(--azul-principal);
+    font-weight: 900;
+    font-size: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.loader-content .highlight {
+    color: var(--amarelo-principal);
+}
+
+.loader-content p {
+    color: var(--texto-secundario);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+/* Barra de Progresso */
+.loading-bar {
+    width: 200px;
+    height: 8px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 10px;
+}
+
+.progress {
+    width: 0%;
+    height: 100%;
+    background-color: var(--azul-principal);
+    border-radius: 10px;
+    animation: carregarBarra 1s infinite linear;
+}
+
+/* Animação da barrinha enchendo */
+@keyframes carregarBarra {
+    0% { width: 0%; transform: translateX(-100%); }
+    50% { width: 100%; transform: translateX(0); }
+    100% { width: 100%; transform: translateX(100%); }
+}
+
+/* Se o site estiver no Dark Mode, o loader acompanha */
+[data-theme="dark"] .page-loader {
+    background-color: #121212;
+}
